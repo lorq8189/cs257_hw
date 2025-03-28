@@ -23,6 +23,8 @@ public class EnemyFSM : MonoBehaviour
     public float lastShootTime;
     public float firerate;
 
+    public GameObject Base;
+
 
 
 
@@ -117,7 +119,8 @@ public class EnemyFSM : MonoBehaviour
     
     void Awake()
     {
-        baseTransform = GameObject.Find("BaseDamagePoint").transform;
+        baseTransform = Base.transform;
+        //GameObject.Find("BaseDamagePoint").transform;
 
 
         agent = GetComponentInParent<UnityEngine.AI.NavMeshAgent>();
@@ -128,23 +131,26 @@ public class EnemyFSM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentState == EnemyState.GoToBase)
+        if (false)
         {
-            GoToBase();
-        }
-        else if 
-        (currentState == EnemyState.AttackBase)
-        {
-            AttackBase();
-        }
-        else if 
-        (currentState == EnemyState.ChasePlayer)
-        {
-            ChasePlayer();
-        }
-        else 
-        {
-            AttackPlayer();
+            if (currentState == EnemyState.GoToBase)
+            {
+                GoToBase();
+            }
+            else if 
+            (currentState == EnemyState.AttackBase)
+            {
+                AttackBase();
+            }
+            else if 
+            (currentState == EnemyState.ChasePlayer)
+            {
+                ChasePlayer();
+            }
+            else 
+            {
+                AttackPlayer();
+            }
         }
     }
 }
