@@ -26,11 +26,11 @@ public class EnemyFSM : MonoBehaviour
     public GameObject Base;
 
 
-
-
+    Animator animator;
 
     void GoToBase()
     {
+        animator.SetBool("Shooting", false);
         agent.isStopped = false;
         agent.SetDestination(baseTransform.position);
         
@@ -56,6 +56,7 @@ public class EnemyFSM : MonoBehaviour
 
     void ChasePlayer()
     {
+        animator.SetBool("Shooting", false);
         agent.isStopped = false;
 
         if (sightSensor.detectedObject == null)
@@ -97,6 +98,7 @@ public class EnemyFSM : MonoBehaviour
 
     void Shoot()
     {
+        animator.SetBool("Shooting", true);
         var elapsed = Time.time - lastShootTime;
         if (elapsed > firerate)
         {
@@ -119,6 +121,7 @@ public class EnemyFSM : MonoBehaviour
     
     void Awake()
     {
+        animator = GetComponent<Animator>();
         baseTransform = Base.transform;
         //GameObject.Find("BaseDamagePoint").transform;
 
